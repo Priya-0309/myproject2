@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>code editor</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'poppins', sans-serif;
+        }
+        body{
+            /* background-color: #454545; */
+            background-color: purple;
+            color: #fff;
+        }
+        .container{
+            width: 100%;
+            height: 100vh;
+            padding: 20px;
+            display: flex;
+        }
+        .left,.right{
+            flex-basis: 50%;
+            padding: 10px;
+        }
+      
+        textarea{
+            width: 100%;
+            height: 28%;
+            /* background-color: #1f1f1f; */
+            background-image: linear-gradient(lightblue,cyan);
+            color:black;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: 0;
+            outline: 0;
+        }
+
+        iframe{
+            width: 100%;
+            height: 95%;
+            /* background-color: lightblue; */
+            background-image: linear-gradient(lightblue,cyan);
+            border: 0;
+            outline: 0;
+        }
+
+        label{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* background-color: #000; */
+            background-image: linear-gradient(orange,brown);
+            height: 30px;
+            font-size: 20px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <label>HTML</label>
+            <textarea id="html-code" onkeyup="run()"></textarea>
+
+            <label>CSS</label>
+            <textarea id="css-code" onkeyup="run()"></textarea>
+
+            <label>JAVASCRIPT</label>
+            <textarea id="javascript-code" onkeyup="run()"></textarea>
+        </div>
+
+
+        <div class="right">
+            <label>OUTPUT</label>
+            <iframe id="output"></iframe>
+        </div>
+
+    </div>
+
+
+    <script>
+        function run(){
+            let html = document.getElementById("html-code").value;
+            let css = document.getElementById("css-code").value;
+            let javascript = document.getElementById("javascript-code").value;
+            let output = document.getElementById("output");
+
+            output.contentDocument.body.innerHTML = html + "<style>"+ css +"</style>";
+            output.contentWindow.eval(javascript);
+        }
+    </script>
+</body>
+</html>
